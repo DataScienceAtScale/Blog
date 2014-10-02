@@ -1,0 +1,38 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='chrome=1')
+    title Blog by DataScienceAtScale
+    link(rel='stylesheet', href='stylesheets/styles.css')
+    link(rel='stylesheet', href='stylesheets/pygment_trac.css')
+    meta(name='viewport', content='width=device-width, initial-scale=1, user-scalable=no')
+    //if lt IE 9
+      script(src='//html5shiv.googlecode.com/svn/trunk/html5.js')
+  body
+    .wrapper
+      header
+        h1 Blog
+        p
+          | Los Alamos National Lab
+          br
+          | Data Science at Scale Team
+        p.view
+          a(href='http://datascience.lanl.gov')
+            | View the Data Science at Scale Website 
+            small Data Science At Scale Website
+        p.view
+          a(href='https://github.com/DataScienceAtScale/Blog')
+            | View the Project on GitHub 
+            small DataScienceAtScale/Blog
+      section
+        include posts.jade
+      footer
+        p
+          | This project is maintained by 
+          a(href='https://github.com/DataScienceAtScale') DataScienceAtScale
+        p
+          small
+            | Hosted on GitHub Pages &mdash; Theme by 
+            a(href='https://github.com/orderedlist') orderedlist
+    script(src='javascripts/scale.fix.js')

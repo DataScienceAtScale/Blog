@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "jade": "",
-    "html2jade": ""
+    "html2jade": "",
+    "marked": ""
   },
   "scripts": {
     "postinstall": ""
