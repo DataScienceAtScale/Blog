@@ -1,3 +1,29 @@
-a.anchor(name='2014-10-2_0', href='#2014-10-2_0')
-  span.octicon.octicon-link
-include:md posts/2014-10-2_0.md
+//-var people = {"CVC": { name: "Curt Canada", curl =  }, "JLW" : { name: "Jon Woodring", curl = "https://github.com/jonwoodring" } }
+
+-var people = {CVC: {name: "Curt Canada", curl: "https://github.com/cvcanada"}}
+
+mixin post(title, datetime, author)
+  h3= title
+  -var dashified= title.replace(/ /g, '-')
+  a.anchor(name= dashified, href= '#' + dashified)
+    span.octicon.octicon-link
+  small
+    = datetime 
+    a(href= people[author].curl)
+      = " " + people[author].name
+    br
+  if block
+    block
+  else
+    p
+  a(href= '#' + dashified)
+    small 
+      | Link to this post
+
++post(
+"Contrasting Currents: Highlighting Ocean Structures with Nested Colormaps",
+"October 2, 2014", 
+"CVC")
+  p
+    include:md posts/2014-10-2_0.md
+
