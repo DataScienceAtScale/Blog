@@ -6,9 +6,9 @@ mixin post(title, datetime, author)
   a.anchor(name= dashified, href= '#' + dashified)
     span.octicon.octicon-link
   small
-    = datetime 
+    = datetime + " -- "
     a(href= people[author].curl)
-      = " " + people[author].name
+      = people[author].name
     br
   if block
     block
