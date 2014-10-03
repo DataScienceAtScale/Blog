@@ -19,15 +19,13 @@ html
         p.view
           a(href='https://github.com/DataScienceAtScale')
             | The Project on GitHub 
-      section
-        include posts.jade
-      footer
-        p
-          | This project is maintained by 
-          a(href='https://github.com/DataScienceAtScale') 
-            | LANL Data Science At Scale Team
-        p
+        p.view
+          small
+            include:md overview.md
+        p.view
           small
             | Hosted on GitHub Pages &mdash; Theme by 
             a(href='https://github.com/orderedlist') orderedlist
+      section
+        include posts.jade
     script(src='javascripts/scale.fix.js')
