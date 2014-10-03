@@ -16,9 +16,9 @@ Data Science at Scale Team Blog
 npm may require setting and unsetting the proxy when being used
 in and out of a protected network.
 
-   'npm config set proxy http://proxyout.lanl.gov:8080' and 
-   'npm config set https-proxy http://proxyout.lanl.gov:8080'
+`npm config set proxy http://proxyout.lanl.gov:8080`
+`npm config set https-proxy http://proxyout.lanl.gov:8080`
 
-   'npm config rm proxy'
-   'npm config rm https-proxy'
+`npm config rm proxy`
+`npm config rm https-proxy`
 
