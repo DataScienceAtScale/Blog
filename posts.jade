@@ -1,22 +1,4 @@
--var people = {CVC: {name: "Curt Canada", curl: "https://github.com/cvcanada"}, JLW: {name: "Jon Woodring", curl: "https://github.com/jonwoodring"}}
-
-mixin post(title, datetime, author)
-  h3= title
-  -var dashified= title.replace(/ /g, '-')
-  a.anchor(name= dashified, href= '#' + dashified)
-    span.octicon.octicon-link
-  small
-    = datetime 
-    a(href= people[author].curl)
-      = " " + people[author].name
-    br
-  if block
-    block
-  else
-    p
-  a(href= '#' + dashified)
-    small 
-      | Link to this post
+include post_mixin.jade
 
 +post(
 "Contrasting Currents: Highlighting Ocean Structures with Nested Colormaps",
