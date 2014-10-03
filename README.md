@@ -13,7 +13,7 @@ Blog
 6. `git commit` your files and `git push origin gh-pages`
 
 
-## npm may require setting and unsetting the proxy when being used in and out of LANL network. ##
+### npm may require setting and unsetting the proxy when being used in and out of LANL network. ###
 
 `npm config set proxy http://proxyout.lanl.gov:8080`  
 `npm config set https-proxy http://proxyout.lanl.gov:8080`
@@ -21,3 +21,4 @@ Blog
 `npm config rm proxy`  
 `npm config rm https-proxy`
 
+> npm also obeys `http_proxy` and `https_proxy` environment variables if the npm config is not set.
