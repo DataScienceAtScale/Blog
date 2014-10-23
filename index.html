@@ -24,7 +24,7 @@ data and don&#39;t line up exactly. <em>Group bys</em> are going to difficult,
 and we have seen this before in our experiments with 
 <a href="http://link.springer.com/article/10.1007/s10586-014-0360-5">bitmap indices on floating point data</a>.</p>
 <p>A first solution looks like we need to quantize the values we want to group by.
-This is what we do in the bitmap indicies, as floating point values
+This is what we do in the bitmap indices, as floating point values
 get quantized.
 A better solution likely involes doing an actual integration with a kernel of
 some stencil size with discrete <em>x</em> values, and searching for the cells
