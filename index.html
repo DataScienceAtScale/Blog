@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="chrome=1"><title>Technical Blag by LANL Data Science At Scale</title><link rel="stylesheet" href="stylesheets/styles.css"><link rel="stylesheet" href="stylesheets/pygment_trac.css"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!--if lt IE 9script(src='//html5shiv.googlecode.com/svn/trunk/html5.js')--></head><body><div class="wrapper"><header><h1>Los Alamos National Lab Data Science at Scale Team</h1><p class="view"><a href="http://datascience.lanl.gov">Data Science at Scale Website </a></p><p class="view"><a href="https://github.com/DataScienceAtScale">The Project on GitHub </a></p><p class="view"><small><h3 id="welcome-to-the-data-science-at-scale-blog">Welcome to the Data Science at Scale Blog</h3>
 <p>Extremely large datasets and extremely high-rate data streams are becoming increasingly common due to the operation of Moore&apos;s Law as applied to sensors, embedded computing, and traditional high-performance computing. Interactive analysis of these datasets is widely recognized as a new frontier at the interface of information science, mathematics, computer science, and computer engineering. Text searching on the web is an obvious example of a large dataset analysis problem; however, scientific and national security applications require far more sophisticated interactions with data than text searches. These applications represent the &apos;data to knowledge&apos; challenge posed by extreme-scale datasets in, for example, astrophysics, biology, climate modeling, cyber security, earth sciences, energy security, materials science, nuclear and particle physics, smart networks, and situational awareness. In order to contribute effectively to Los Alamos National Lab&apos;s overall national security mission, we need a strong capability in Data Science at Scale. This capability rests on robust and integrated efforts in data management and infrastructure, visualization and analysis, high-performance computational statistics, machine learning, uncertainty quantification, and information exploitation. The Data Science at Scale capability provides tools capable of making quantifiably accurate predictions for complex problems with the efficient use and collection of data and computing resources.</p>
-</small></p><p class="view"><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p></header><section><h3>FP in Python for Data Science</h3><a name="FP-in-Python-for-Data-Science" href="#FP-in-Python-for-Data-Science" class="anchor"><span class="octicon octicon-link"></span></a><small>November 19, 2014 -- <a href="https://github.com/jonwoodring">Jon Woodring</a><br></small><p><p>I recently came across several tools to be able to do functional
+</small></p><p class="view"><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p></header><section><h3>FP in Python for Data Processing</h3><a name="FP-in-Python-for-Data-Processing" href="#FP-in-Python-for-Data-Processing" class="anchor"><span class="octicon octicon-link"></span></a><small>November 19, 2014 -- <a href="https://github.com/jonwoodring">Jon Woodring</a><br></small><p><p>I recently came across several tools to be able to do functional
 programming in Python. The ones in particular I am looking at are
 <a href="https://github.com/kachayev/fn.py">fn</a> and 
 <a href="http://toolz.readthedocs.org/en/latest/api.html">toolz</a>.
@@ -9,29 +9,30 @@ These extend a lot of the functionality that&#39;s already found in
 <a href="https://docs.python.org/2/library/itertools.html">itertools</a>.
 (Though, Guido has said Python was always intended to be an imperative
 language and the functional stuff was never his personal agenda. This
-is why reduce is deprecated because he thinks it is unreadable compared
-to a for loop. I&#39;m paraphrasing here.)</p>
+is why <em>reduce</em> is deprecated because he thinks it is unreadable compared
+to a <em>for</em> loop. I&#39;m paraphrasing here.)</p>
 <p>So, why do this (aside from functional programming is a lot of 
 fun in an academic way)? Because, it makes filtering and processing
 of data pretty easy. In particular, joins, group by, filters (all
-found in SQL) are very functional paradigms for data selection.</p>
-<p>You ask, &quot;why not just use pandas?&quot; (<a href="http://pandas.pydata.org/">pandas</a>)
-&quot;(or even numpy because you can do most of the pandas stuff in numpy?)&quot; 
+found in <em>SQL</em>) are very functional paradigms for data selection.</p>
+<p>You ask, &quot;why not just use <em>pandas</em>?&quot; (<a href="http://pandas.pydata.org/">pandas</a>)
+&quot;(or even <em>numpy</em> because you can do most of the <em>pandas</em> stuff in numpy?)&quot; 
 &quot;It can do all of the filtering, joining, and data massaging that you&#39;d
-like to do.&quot; Well, its because pandas is currently memory only, and frequently
+like to do.&quot; Well, its because <em>pandas</em> is currently memory only, and frequently
 our data sets are larger than the memory that you are currently running
-on. </p>
+on. (As an aside, you can back <em>numpy</em> arrays with memory maps, to do
+out-of-core processing. It&#39;s really fast and transparent.) </p>
 <p>Out-of-core (streaming) maps really well to a functional lazy
 evaluation model, like Python generators. The aforementioned functional tools 
-(fn and toolz) rely on Python&#39;s lazy iterator/generator model and can be used
-to process data out-of-core in a really easily. Plus, we have other work
-going on that uses the vector/streaming model for computation, found
+utilize on Python&#39;s lazy iterator/generator model and can be used
+to process data out-of-core really easily. Plus, we have other work
+going on that uses the vector/streaming/functional model for computation, found
 in <a href="http://viz.lanl.gov/projects/PISTON.html">Piston</a>.</p>
-<p>Though, I am keeping tabs on <a href="http://blaze.pydata.org">blaze</a> It&#39;s not quite 
+<p>Though, I am keeping tabs on <a href="http://blaze.pydata.org">blaze</a>. It&#39;s not quite 
 where I&#39;d like it, yet, in terms of stability (and being able to use it
-without Anaconda), but maybe it&#39;s the out-of-core pandas we&#39;d like
-to have.</p>
-</p><a href="#FP-in-Python-for-Data-Science"><small> 
+without Anaconda), but maybe it&#39;s the out-of-core <em>pandas</em> we&#39;d like
+to have, someday.</p>
+</p><a href="#FP-in-Python-for-Data-Processing"><small> 
 Link to this post</small></a><br><h3>Python @ VIS 2014</h3><a name="Python-@-VIS-2014" href="#Python-@-VIS-2014" class="anchor"><span class="octicon octicon-link"></span></a><small>November 7, 2014 -- <a href="https://github.com/jonwoodring">Jon Woodring</a><br></small><p><p>The tutorial for <a href="https://github.com/JosephCottam/PythonVIS2014">Python @ VIS 2014</a> is found <a href="https://github.com/JosephCottam/PythonVIS2014">here</a>.</p>
 <iframe src="//player.vimeo.com/video/103884477" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
