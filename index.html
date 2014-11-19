@@ -1,6 +1,27 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="chrome=1"><title>Technical Blag by LANL Data Science At Scale</title><link rel="stylesheet" href="stylesheets/styles.css"><link rel="stylesheet" href="stylesheets/pygment_trac.css"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!--if lt IE 9script(src='//html5shiv.googlecode.com/svn/trunk/html5.js')--></head><body><div class="wrapper"><header><h1>Los Alamos National Lab Data Science at Scale Team</h1><p class="view"><a href="http://datascience.lanl.gov">Data Science at Scale Website </a></p><p class="view"><a href="https://github.com/DataScienceAtScale">The Project on GitHub </a></p><p class="view"><small><h3 id="welcome-to-the-data-science-at-scale-blog">Welcome to the Data Science at Scale Blog</h3>
 <p>Extremely large datasets and extremely high-rate data streams are becoming increasingly common due to the operation of Moore&apos;s Law as applied to sensors, embedded computing, and traditional high-performance computing. Interactive analysis of these datasets is widely recognized as a new frontier at the interface of information science, mathematics, computer science, and computer engineering. Text searching on the web is an obvious example of a large dataset analysis problem; however, scientific and national security applications require far more sophisticated interactions with data than text searches. These applications represent the &apos;data to knowledge&apos; challenge posed by extreme-scale datasets in, for example, astrophysics, biology, climate modeling, cyber security, earth sciences, energy security, materials science, nuclear and particle physics, smart networks, and situational awareness. In order to contribute effectively to Los Alamos National Lab&apos;s overall national security mission, we need a strong capability in Data Science at Scale. This capability rests on robust and integrated efforts in data management and infrastructure, visualization and analysis, high-performance computational statistics, machine learning, uncertainty quantification, and information exploitation. The Data Science at Scale capability provides tools capable of making quantifiably accurate predictions for complex problems with the efficient use and collection of data and computing resources.</p>
-</small></p><p class="view"><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p></header><section><h3>FP in Python for Data Processing</h3><a name="FP-in-Python-for-Data-Processing" href="#FP-in-Python-for-Data-Processing" class="anchor"><span class="octicon octicon-link"></span></a><small>November 19, 2014 -- <a href="https://github.com/jonwoodring">Jon Woodring</a><br></small><p><p>I recently came across several tools to be able to do functional
+</small></p><p class="view"><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p></header><section><h3>FP in Python (II)</h3><a name="FP-in-Python-(II)" href="#FP-in-Python-(II)" class="anchor"><span class="octicon octicon-link"></span></a><small>November 19, 2014 -- <a href="https://github.com/jonwoodring">Jon Woodring</a><br></small><p><p>After creating some data backed in a memmapped numpy array, I did a simple
+filter and selection. There are 16 million rows in this table.</p>
+<p>numpy does it in 0.024s, where <em>table</em> is a dict of numpy arrays:</p>
+<pre><code class="lang-python">I = numpy.where(table[&#39;id&#39;] &gt; 16000000)
+xi = table[&#39;x&#39;][I]
+</code></pre>
+<p>Then, pandas always has me wondering why I should use it? <em>D</em> is a data frame
+(inserted the table data above right into a pandas DataFrame with no change.)
+Here, it&#39;s almost as twice as slow as numpy for doing the same filter (0.047s).
+I still teach it, but I can&#39;t figure out why I should personally use it. 
+I mean I can implement groupby and join in numpy... I should test that.
+I suppose the code is slightly more readable... (maybe)</p>
+<pre><code>xi = D.loc(D.id &gt; 16000000, [&#39;x&#39;])
+</code></pre><p>And, here the loser is the iterator/generator method. PyObject overhead
+rears its ugly head and this takes 47s :(</p>
+<pre><code class="lang-python">sx = numpy.nditer(table[&#39;x&#39;])
+si = numpy.nditer(table[&#39;id&#39;])
+f = filter(lambda i: i[1] &gt; 16000000, zip(sx, si))
+xi = [i[0] for i in f]
+</code></pre>
+</p><a href="#FP-in-Python-(II)"><small> 
+Link to this post</small></a><br><h3>FP in Python for Data Processing</h3><a name="FP-in-Python-for-Data-Processing" href="#FP-in-Python-for-Data-Processing" class="anchor"><span class="octicon octicon-link"></span></a><small>November 19, 2014 -- <a href="https://github.com/jonwoodring">Jon Woodring</a><br></small><p><p>I recently came across several tools to be able to do functional
 programming in Python. The ones in particular I am looking at are
 <a href="https://github.com/kachayev/fn.py">fn</a> and 
 <a href="http://toolz.readthedocs.org/en/latest/api.html">toolz</a>.
