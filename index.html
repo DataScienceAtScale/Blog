@@ -2,17 +2,15 @@
 <p>Extremely large datasets and extremely high-rate data streams are becoming increasingly common due to the operation of Moore&apos;s Law as applied to sensors, embedded computing, and traditional high-performance computing. Interactive analysis of these datasets is widely recognized as a new frontier at the interface of information science, mathematics, computer science, and computer engineering. Text searching on the web is an obvious example of a large dataset analysis problem; however, scientific and national security applications require far more sophisticated interactions with data than text searches. These applications represent the &apos;data to knowledge&apos; challenge posed by extreme-scale datasets in, for example, astrophysics, biology, climate modeling, cyber security, earth sciences, energy security, materials science, nuclear and particle physics, smart networks, and situational awareness. In order to contribute effectively to Los Alamos National Lab&apos;s overall national security mission, we need a strong capability in Data Science at Scale. This capability rests on robust and integrated efforts in data management and infrastructure, visualization and analysis, high-performance computational statistics, machine learning, uncertainty quantification, and information exploitation. The Data Science at Scale capability provides tools capable of making quantifiably accurate predictions for complex problems with the efficient use and collection of data and computing resources.</p>
 </small></p><p class="view"><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p></header><section><h3>FP in Python (II)</h3><a name="FP-in-Python-(II)" href="#FP-in-Python-(II)" class="anchor"><span class="octicon octicon-link"></span></a><small>November 19, 2014 -- <a href="https://github.com/jonwoodring">Jon Woodring</a><br></small><p><p>After creating some data backed in a memmapped numpy array, I did a simple
 filter and selection. There are over 16 million rows in this table.</p>
-<p>numpy does it in 0.024s, where <em>table</em> is a dict of numpy arrays:</p>
+<p>numpy does it in 0.03s, where <em>table</em> is a dict of numpy arrays:</p>
 <pre><code class="lang-python">I = numpy.where(table[&#39;id&#39;] &gt; 16000000)
 xi = table[&#39;x&#39;][I]
 </code></pre>
-<p>Then, pandas always has me wondering why I should use it? <em>D</em> is a data frame
-(inserted the table data above right into a pandas DataFrame with no change.)
-Here, it&#39;s almost as twice as slow as numpy for doing the same filter (0.047s).
-I still teach it, but I can&#39;t figure out why I should personally use it. 
-I mean I can implement groupby and join in numpy... I should test that.
-I suppose the code is slightly more readable... (maybe)</p>
-<pre><code>xi = D.loc(D.id &gt; 16000000, [&#39;x&#39;])
+<p><em>D</em> is a pandas data frame created directly from the dictionary. It&#39;s
+just as fast as numpy. Just make sure you use the right indexing, in
+this case, iloc. If you do .loc, it&#39;s two times slower. There&#39;s even
+slower ways of doing it.</p>
+<pre><code>xi = D.iloc(D.id &gt; 16000000, [&#39;x&#39;])
 </code></pre><p>And, here the loser is the iterator/generator method. PyObject overhead
 rears its ugly head and this takes 47s :(</p>
 <pre><code class="lang-python">sx = numpy.nditer(table[&#39;x&#39;])
