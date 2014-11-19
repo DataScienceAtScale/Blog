@@ -7,15 +7,13 @@ filter and selection. There are over 16 million rows in this table.</p>
 xi = table[&#39;x&#39;][I]
 </code></pre>
 <p><em>D</em> is a pandas data frame created directly from the dictionary. It&#39;s
-just as fast as numpy. Just make sure you use the right indexing, in
-this case, iloc. If you do .loc, it&#39;s two times slower. There&#39;s even
-slower ways of doing it.</p>
-<pre><code>xi = D.iloc(D.id &gt; 16000000, [&#39;x&#39;])
-</code></pre><p>And, here the loser is the iterator/generator method. PyObject overhead
+just as fast as numpy. Just make sure you use the right indexing, such
+as .loc, .iloc, and .ix. [] can be very slow.</p>
+<pre><code>xi = D.loc(D.id &gt; 16000000, [&#39;x&#39;])
+</code></pre><p>And, here the loser is the iterator/generator method. sx and si are
+&quot;streaming&quot; versions, created by numpy.nditer. PyObject overhead
 rears its ugly head and this takes 47s :(</p>
-<pre><code class="lang-python">sx = numpy.nditer(table[&#39;x&#39;])
-si = numpy.nditer(table[&#39;id&#39;])
-f = filter(lambda i: i[1] &gt; 16000000, zip(sx, si))
+<pre><code class="lang-python">f = filter(lambda i: i[1] &gt; 16000000, zip(sx, si))
 xi = [i[0] for i in f]
 </code></pre>
 </p><a href="#FP-in-Python-(II)"><small> 
