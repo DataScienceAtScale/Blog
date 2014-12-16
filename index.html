@@ -6,14 +6,22 @@ filter and selection. There are over 16 million rows in this table.</p>
 <pre><code class="lang-python">I = numpy.where(table[&#39;id&#39;] &gt; 16000000)
 xi = table[&#39;x&#39;][I]
 </code></pre>
-<p><em>D</em> is a <em>pandas</em> data frame created directly from the dictionary. It&#39;s
-just as fast as <em>numpy</em>. Just make sure you use the right indexing, such
-as .loc, .iloc, and .ix. [] can be very slow. </p>
-<pre><code class="lang-python">xi = D.loc(D.id &gt; 16000000, [&#39;x&#39;])
+<h3 id="updated-dec-16">Updated Dec 16</h3>
+<p><em>D</em> is a <em>pandas</em> data frame created directly from the dictionary. 
+<del>It&#39;s just as fast as <em>numpy</em>. Just make sure you use the 
+right indexing, such as .loc, .iloc, and .ix. [] can be very slow.</del>
+<em>Actually, doing some additional testing, I am finding that</em> pandas
+<em>is an order of magnitude slower, what I was seeing before. I&#39;m not
+sure what is going on here, but the operation below is .3s (I may
+have read it incorrectly the first time.)</em></p>
+<pre><code class="lang-python">xi = D.loc[D.id &gt; 16000000, [&#39;x&#39;]]
 </code></pre>
-<p>Though, we can see we are doing it out-of-core with the same memmapped 
-<em>numpy</em> array with the nice <em>pandas</em> DSL. Yay! What I need to test next is
-if I can get pandas to build out-of-core indices.</p>
+<p><del>Though, we can see we are doing it out-of-core with the same memmapped 
+<em>numpy</em> array with the nice <em>pandas</em> DSL. Yay!</del>
+What I need to test next is
+if I can get pandas to build out-of-core indices. <em>And, I need to verify
+that I am still seeing that</em> pandas <em>is an order of magnitude slower
+than numpy, which was my original conclusion prior to posting this.</em></p>
 <p>And, here the loser is the iterator/generator method. sx and si are
 &quot;streaming&quot; versions, created by numpy.nditer. PyObject overhead
 rears its ugly head and this takes 47s... So, much for that.</p>
