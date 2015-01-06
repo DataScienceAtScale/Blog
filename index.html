@@ -4,15 +4,15 @@
 <p>So, investigating some ways to introduce filter/select into various
 languages, a colleague of mine and I both agree we don&#39;t like how 
 Pandas and now Blaze is going to do it in Python. 
-It looks too much like array syntax.</p>
-<pre><code class="lang-python">data[filter, select][filter, select]
+It looks too much like array syntax and filter and select are &quot;hidden&quot;.</p>
+<pre><code class="lang-python">data[filterexpr, selectexpr][filterexpr, selectexpr]
 </code></pre>
 <p>Then, he brought up he prefers the R/dplyr syntax, which I agree with:</p>
-<pre><code class="lang-R">data %&gt;% filter %&gt;% select %&gt;% filter %&gt;% select
+<pre><code class="lang-R">data %&gt;% filter(expr) %&gt;% select(expr) %&gt;% filter(expr) %&gt;% select(expr)
 </code></pre>
 <p>And gave the example of how scala does it and looks very similar
 to pynq and asq for python:</p>
-<pre><code class="lang-python">data.filter().select().filter().select()
+<pre><code class="lang-python">data.filter(expr).select(expr).filter(expr).select(expr)
 </code></pre>
 <p>Though, I don&#39;t like that one. This assumes the methods are bound to
 the data (i.e., object oriented programming).</p>
@@ -21,10 +21,10 @@ operator in F#. I&#39;ve even implemented |&gt; in Haskell because I prefer
 reading left to right, rather than right to left (the $ operator
 or nested parens found in Scheme/Lisp).</p>
 <p>In python with functoolz:</p>
-<pre><code class="lang-python">pipe(data, filter, select, filter, select)
+<pre><code class="lang-python">pipe(data, filter(expr), select(expr), filter(expr), select(expr))
 </code></pre>
 <p>In F#/Haskell with a |&gt; operator:</p>
-<pre><code>data |&gt; filter |&gt; select |&gt; filter |&gt; select
+<pre><code>data |&gt; filter(expr) |&gt; select(expr) |&gt; filter(expr) |&gt; select(expr)
 </code></pre></p><a href="#I-don't-like-.func()-chaining"><small> 
 Link to this post</small></a><br><h3>FP in Python (II)</h3><a name="FP-in-Python-(II)" href="#FP-in-Python-(II)" class="anchor"><span class="octicon octicon-link"></span></a><small>November 19, 2014 -- <a href="https://github.com/jonwoodring">Jon Woodring</a><br></small><p><p>After creating some data backed in a memmapped numpy array, I did a simple
 filter and selection. There are over 16 million rows in this table.
