@@ -4,10 +4,8 @@
 <p>So, investigating some ways to introduce filter/select into various
 languages, a colleague of mine and I both agree we don&#39;t like how 
 Pandas and now Blaze is going to do it in Python. 
-It looks too much like array syntax and it&#39;s hard to pipe several 
-operations together. Basically:</p>
-<pre><code class="lang-python">s1 = data[filter, select]
-s2 = s1[filter, select]
+It looks too much like array syntax.</p>
+<pre><code class="lang-python">data[filter, select][filter, select]
 </code></pre>
 <p>Then, he brought up he prefers the R/dplyr syntax, which I agree with:</p>
 <pre><code class="lang-R">data %&gt;% filter %&gt;% select %&gt;% filter %&gt;% select
