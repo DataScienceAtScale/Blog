@@ -11,17 +11,20 @@ It looks too much like array syntax and filter and select are &quot;hidden&quot;
 (aside from the %&gt;% pipe operator, I prefer the F# one, |&gt;)</p>
 <pre><code class="lang-R">data %&gt;% filter(expr) %&gt;% select(expr) %&gt;% filter(expr) %&gt;% select(expr)
 </code></pre>
-<p>And gave the example of how scala does it and looks very similar
-to pynq and asq for python:</p>
+<p>And gave the example of how Scala does it and looks very similar
+to pynq and asq for Python:</p>
 <pre><code class="lang-python">data.filter(expr).select(expr).filter(expr).select(expr)
 </code></pre>
 <p>Though, I don&#39;t like that one. This assumes the methods are bound to
-the data (i.e., object oriented programming).</p>
+the data (i.e., object oriented programming). I really dislike it
+in both Javascript and Python (i.e., the only time I use objects
+in Python are when I do GUI programming because it lends itself well
+to the object oriented design pattern.)</p>
 <p>functoolz has a pipe() function to compose, and I really like the |&gt;
 operator in F#. I&#39;ve even implemented |&gt; in Haskell because I prefer
 reading left to right, rather than right to left (the $ operator
 or nested parens found in Scheme/Lisp).</p>
-<p>In python with functoolz:</p>
+<p>In Python with functoolz:</p>
 <pre><code class="lang-python">pipe(data, filter(expr), select(expr), filter(expr), select(expr))
 </code></pre>
 <p>In F#/Haskell with a |&gt; operator:</p>
