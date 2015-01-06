@@ -7,8 +7,9 @@ Blog
 
 1. Install node.js and npm 
 2. `npm install` from the Blog directory (*please don't commit these files*)
-3. First, to add a new post, add a markdown in *posts/* 
-4. Then with the +post() mixin, put it in *posts.jade*
+3. First, to add a new post, add a markdown in *markdown/* 
+4. Then with the +post() mixin, put it in *posts.jade* (You may need
+   to add yourself in *post_mixin.jade*)
 5. `make` to regenerate the static html
 6. `git commit` your files and `git push origin gh-pages`
 
