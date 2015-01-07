@@ -1,4 +1,4 @@
--var people = {CVC: {name: "Curt Canada", curl: "https://github.com/cvcanada"}, JLW: {name: "Jon Woodring", curl: "https://github.com/jonwoodring"}}
+-var people = {CVC: {name: "Curt Canada", curl: "https://github.com/cvcanada"}, JLW: {name: "Jon Woodring", curl: "https://github.com/jonwoodring"}, LTL: {name: "Li-Ta Lo", curl: "https://github.com/ollielo"} }
 
 mixin post(title, datetime, author)
   h3= title
@@ -15,7 +15,7 @@ mixin post(title, datetime, author)
   else
     p
   a(href= '#' + dashified)
-    small 
+    small
       | Link to this post
   hr
   br
