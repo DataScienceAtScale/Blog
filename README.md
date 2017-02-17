@@ -1,6 +1,8 @@
 Blog
 ====
 
+*(Jon) I disabled it because who has time to blog?*
+
 [Data Science at Scale Team Blog](http://datascienceatscale.github.io/Blog/ "Data Science at Scale Team Blog")
 
 # To create the page #
